@@ -1,0 +1,33 @@
+{
+  "name": "react-restapi",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "Faker": "^0.7.2",
+    "axios": "^0.18.0",
+    "faker": "^4.1.0",
+    "immutable": "^4.0.0-rc.12",
+    "react": "^16.8.2",
+    "react-data-grid": "^6.0.2-0",
+    "react-data-grid-addons": "^6.0.2-0",
+    "react-dom": "^16.8.2",
+    "react-filter-search": "^1.0.8",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

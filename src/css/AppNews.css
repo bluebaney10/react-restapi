@@ -1,0 +1,21 @@
+.card-box {
+    height: 100%;
+   
+  }
+  .AppNews-box{ margin-top: 50px;}
+  .menuStyle{ height: 50px; background-color: lightseagreen}
+
+
+  .navbar-item, .navbar-link {
+    color: #ffffff;
+}
+
+.navbar-item:hover, .navbar-link:hover {
+    color: #ffffff;
+    text-decoration:none;
+}
+a:hover {
+    color: #3273dc;
+    cursor: pointer;
+    text-decoration: none;
+}
