@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 
 class EditPerson extends Component{
    
@@ -79,7 +80,10 @@ class EditPerson extends Component{
             age: this.state.age
         }
         axios.put(`https://py-api.herokuapp.com/users/update/`+this.state.id, person)
-        .then(res => console.log(res.data));
+        .then(res => {
+              console.log(res.data);
+              alert("Edit Success");
+        } )
      
       }
 
@@ -87,7 +91,7 @@ class EditPerson extends Component{
 
       
         return(
-            <React.Fragment>
+          <Container>
              <h1>Person Edit</h1>
              <h4><Link to="/" className="btn btn-primary">Person List</Link></h4>
             
@@ -120,7 +124,7 @@ class EditPerson extends Component{
             
               <button type="submit" className="btn btn-success">Submit</button>
             </form>
-            </React.Fragment>
+            </Container>
             )
     }
 }

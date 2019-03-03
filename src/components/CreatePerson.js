@@ -1,6 +1,8 @@
 import React,{Component} from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import { Container,Form,Button,Col} from 'react-bootstrap';
+import '../css/person.css'
 
 class CreatePerson extends Component{
 
@@ -157,48 +159,74 @@ onDropdownSelected(e) {
     render(){
       
         return(
-            <React.Fragment>
-            <h1>Person Create</h1>
-            <h4><Link to="/" className="btn btn-primary">Person List</Link></h4>
-           
-            <form onSubmit= {this.contactSubmit.bind(this)}>
-            <div className="form-group">
-              <label htmlFor="title">First Name:</label>
-              <input type="text" className="form-control" ref="first_name" value={this.state.fields["first_name"]} onChange={this.handleChange.bind(this, "first_name")} placeholder="first name" />
-              <span className="error">{this.state.errors["first_name"]}</span>
-            </div>
+          <Container>
+            <h2 className="text-center">Person Create</h2>
+            <Form.Row>
+           <Form.Group as={Col}>
+            <Link to="/" >
+            <Button type="submit">Person List</Button>
+            </Link>
+          </Form.Group>
+          </Form.Row>
 
-            <div className="form-group">
-              <label htmlFor="title">Last Name:</label>
-              <input type="text" className="form-control" ref="last_name" value={this.state.fields["last_name"]} onChange={this.handleChange.bind(this, "last_name")} placeholder="last name" />
-              <span className="error">{this.state.errors["last_name"]}</span>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="title">Email:</label>
-              <input type="text" className="form-control" ref="email" value={this.state.fields["email"]} onChange={this.handleChange.bind(this, "email")} placeholder="email" />
-              <span className="error">{this.state.errors["email"]}</span>
-            </div>
-
+          <Form onSubmit= {this.contactSubmit.bind(this)}>
+          <Form.Row>
+            <Form.Group as={Col} md="4" xs="12" >
+              <Form.Label>First Name:</Form.Label>
+              <Form.Control type="text" ref="first_name" value={this.state.fields["first_name"]} onChange={this.handleChange.bind(this, "first_name")} placeholder="first name" />
+              <div className="error">{this.state.errors["first_name"]}</div>
+            </Form.Group>
           
-            <div className="form-group">
-            <label htmlFor="title">Age:</label>
-            <select onChange={this.handleChange.bind(this,"age")} >
-              {this.createSelectItems()}
-            </select>
-            <div className="error">{this.state.errors["age"]}</div>
-            </div>
-            
-            <div className="form-group">
-            <input type="radio" name="gender" value='male' defaultChecked={this.state.checked} onChange={this.handleChange.bind(this,"gender")} /><label>Male</label>
-            <input type="radio" name="gender" value='female'  onChange={this.handleChange.bind(this,"gender")} /><label>Female</label>
-            <div className="error">{this.state.errors["gender"]}</div>
-            </div>
-           
+            <Form.Group as={Col} md="4" xs="12"  >
+              <Form.Label>Last Name:</Form.Label>
+              <Form.Control type="text" ref="last_name" value={this.state.fields["last_name"]} onChange={this.handleChange.bind(this, "last_name")} placeholder="last name" />
+              <div className="error">{this.state.errors["last_name"]}</div>
+            </Form.Group>
 
-            <button className="btn btn-success center-block">Create</button>
-       </form>
-       </React.Fragment>
+            <Form.Group as={Col} md="4" xs="12">
+              <Form.Label>Email:</Form.Label>
+              <Form.Control type="text" ref="email" value={this.state.fields["email"]} onChange={this.handleChange.bind(this, "email")} placeholder="email"  />
+              <div className="error">{this.state.errors["email"]}</div>
+            </Form.Group>
+
+         </Form.Row>
+           
+      
+            <Form.Row>
+            <Form.Group as={Col} md="4">
+            <Form.Label>Age:</Form.Label>
+            <Form.Control as="select" onChange={this.handleChange.bind(this,"age")}>
+                {this.createSelectItems()} 
+            </Form.Control>
+            <div className="error">{this.state.errors["age"]}</div>
+          </Form.Group>
+          </Form.Row>
+
+
+          <Form.Row>
+    <Form.Group >
+      <Form.Label as="legend" >
+        Gender:
+      </Form.Label>
+      <Col >
+        <Form.Check
+        type="radio" name="gender" value='male' defaultChecked={this.state.checked} onChange={this.handleChange.bind(this,"gender")}
+        label="Male"
+         
+         
+        />
+        <Form.Check
+         type="radio" name="gender" value='female'  onChange={this.handleChange.bind(this,"gender")}
+          label="Female"
+        />
+       
+      </Col>
+      <div className="error">{this.state.errors["gender"]}</div>
+    </Form.Group>
+    </Form.Row>
+          <button className="btn btn-success">Create</button>
+     </Form>
+  </Container>
         )
     }
 

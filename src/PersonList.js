@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import { Container,Form, Table,Button,Col } from 'react-bootstrap';
+import './css/person.css'
 
 class PersonList extends React.Component 
 {
@@ -89,6 +91,7 @@ class PersonList extends React.Component
     axios.delete(`https://py-api.herokuapp.com/users/delete/`+id)
     .then(res => {
       console.log(res.data)
+      alert("Delete Success");
       this.getPerson()
     })
     
@@ -99,31 +102,26 @@ class PersonList extends React.Component
   render() 
   {
      return (
-      <div>
-      <div className="container top">
-        <div className="row">
-          <div className="col-lg-12">
-             <h2 className="text-center">Person List</h2>
-          </div>
-        </div>
-      </div>
+      
 
-      <Link to={`/create`} className="btn btn-success">
-             <button className="btn btn-danger">
-              Create 
-              </button>
+      <Container>
+      <h2 className="text-center">Person List</h2>
+        <Form.Row>
+           <Form.Group as={Col}>
+              <Link to={`/create`} >
+              <Button type="submit">Create New Person</Button>
               </Link>
+          </Form.Group>
+          </Form.Row>
 
-
-         <div className="container wb">
-        <div className="row">
-        <br/>
-        <input type="text"
-               className="center-block"
-               placeholder="Filter here..."
-               onChange={this.filterPerson}
-               />
-        <select
+                
+        <Form.Row>
+        <Form.Group as={Col} md="4" >
+        <Form.Control type="text" placeholder="Search here..."  onChange={this.filterPerson} />
+        </Form.Group>
+        
+        <Form.Group as={Col} md="3" >
+        <Form.Control as="select"
         id="searchSelect"
         name="searchSelect"
         onChange={this.filterSelected} >
@@ -133,31 +131,59 @@ class PersonList extends React.Component
           <option value="email" >email</option>
           <option value="age" >age</option>
         ))}
-      </select>
+        </Form.Control>
+        </Form.Group>
+        </Form.Row>
+
+       
          
-          <ul>
+      <Table striped bordered hover size="sm">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>E-Mail</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
             
             {this.state.persons.map((person) => {
-
-             return (
-             <li  key={person.id}>{person.id} {person.first_name} {person.last_name}  {person.email}  {person.gender} {person.age}
-             <Link to={`/edit/${person.id}`} className="btn btn-success">
-             <button className="btn btn-danger">
+            return (
+            <tr key={person.id}>
+            <td>{person.id}</td>
+            <td>{person.first_name}</td>
+            <td>{person.last_name}</td>
+            <td>{person.email}</td>
+            <td>{person.gender}</td>
+            <td>{person.age}</td>
+            <td><Link to={`/edit/${person.id}`}>
+             <Button variant="warning">
               Edit 
-              </button>
+              </Button>
               </Link>
-             <button onClick={this.delete.bind(this, person.id)} className="btn btn-danger">Delete</button>
-             </li>
-             )
+              </td>
+
+            <td>
+            <Button onClick={this.delete.bind(this, person.id)} className="btn btn-danger">Delete</Button>
+            </td>
+            </tr>
+            )
+            
+           
             }
           )} 
-            {this.state.message ? <li>No search results.</li> : '' }
-          </ul>
-         </div>
+            {this.state.message ? <tr><td colSpan="8" >No search results.</td></tr> : '' }
           
-         </div>
-        </div>
-    );  
+          </Table>
+        
+
+       
+    </Container>
+    ) 
   }
   
 }
