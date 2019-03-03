@@ -50,22 +50,11 @@ class PersonList extends React.Component
   }
   
   
-  filterPerson(e)
-  {   
+  filterPerson(e){   
     
-    this.trace('filterPerson')
-    this.trace("selectedValue:"+this.state.selectedValue)
-    this.trace("value:"+e.target.value)
-
-     var updatedList = this.state.personInit;
+    var updatedList = this.state.personInit;
     updatedList = updatedList.filter((item =>{
-      this.trace("item:"+item[this.state.selectedValue])
-      this.trace("item2:"+item.first_name)
-      this.trace("item3:"+item)
-     // this.trace("item4:"+item[0].first_name)
-     // this.trace("item5:"+item[1].first_name)
-      //this.trace("item6:"+item[0]["first_name"])
-
+    
       return item[this.state.selectedValue].toString().toLowerCase().search(
         e.target.value.toLowerCase()) !== -1;
     }) )
@@ -87,49 +76,6 @@ class PersonList extends React.Component
     
   }
   
-  
-  /*
-  filterPerson(e){   
-    var updatedList = this.state.personInit;
-    
-  
-    let type=this.state.selectedValue
-    this.trace('filterPerson type:'+type)
-    this.trace('value:'+e.target.value)
-    
-     if(type ==="id"){
-      this.trace('fileter id')
-      this.trace('selectedValue:'+this.state.selectedValue)
-     updatedList = updatedList.map(function(item) {
-            if (item[this.state.selectedValue].indexOf(e.target.value) === -1) {
-              return;
-            }})
- 
-    }
-    else if(type ==="age"){
- }
-    else {
-    updatedList = updatedList.filter((item =>{
-      //this.trace("Name:"+item[this.state.selectedValue])
-      return item[this.state.selectedValue].toLowerCase().search(e.target.value.toLowerCase()) !== -1;
-      }))
-    }
-       
-     this.setState({ 
-      persons: updatedList
-      })
-    
-   
-    if (updatedList === 0 ) {
-      this.setState({ 
-      message: true })
-    } else {
-        this.setState({ 
-        message: false, })
-    }
-    
-  }
-  */
 
   filterSelected(e){
     this.trace('filterSelected:'+e.target.value)
@@ -185,7 +131,6 @@ class PersonList extends React.Component
           <option value="first_name" >name </option>
           <option value="last_name" >last name </option>
           <option value="email" >email</option>
-          <option value="gender" >gender</option>
           <option value="age" >age</option>
         ))}
       </select>
